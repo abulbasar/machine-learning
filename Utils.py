@@ -1,3 +1,11 @@
+"""
+Load this script to your python by running the following code
+import requests
+url = "https://raw.githubusercontent.com/abulbasar/machine-learning/master/Utils.py"
+exec(requests.get(url).text)
+   
+"""
+
 class Batchable:
     import math
     import numpy as np
