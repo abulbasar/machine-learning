@@ -5,10 +5,11 @@ url = "https://raw.githubusercontent.com/abulbasar/machine-learning/master/Utils
 exec(requests.get(url).text)
    
 """
-
+import math
+import numpy as np
+      
 class Batchable:
-    import math
-    import numpy as np
+
     
     def shuffle(self):
         X = self.X
