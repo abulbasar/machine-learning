@@ -55,8 +55,8 @@ def plot_scores(scores, window = 10, plt = plt):
    Displays cost decay curve with rolling mean. 
    """
    s = pd.Series(scores)
-   plt.plot(s, label = "original")
-   plt.plot(s.rolling(window).mean(), label = "rolling mean")
+   plt.plot(s, label = "original", alpha = 0.3, color = "steelblue")
+   plt.plot(s.rolling(window).mean(), label = "rolling mean", color = "steelblue")
    plt.legend()
    plt.xlabel("Iterations")
    plt.ylabel("Cost")
