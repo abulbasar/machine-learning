@@ -30,9 +30,15 @@ class Batchable:
         self.num_batches = math.ceil(X.shape[0] / batch_size)
     
     def next(self):
+        if self.require_shuffle:
+            self.require_shuffle = False
+            self.shuffle()
+            
         start = self.start
         end = self.start + self.batch_size
         end = min(self.X.shape[0], end)
+        if end == self.X.shape[0]:
+            self.require_shuffle = True
         self.start = end % self.X.shape[0]
         return self.X[start: end, :], self.y[start: end]
     
