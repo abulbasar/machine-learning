@@ -44,16 +44,15 @@ def show(scores, ax = None):
     df.rolling(100, min_periods=1).mean().plot.line(ax = ax)    
 
       
-def plot_scores(scores, window = 10, , plt = plt):
+def plot_scores(scores, window = 10, plt = plt):
    """
-   Assumption: 
    Parameters: 
    scores: dict containing iteration index as key and the cost value as value.
    window: length of the rolling window
    plt: matplotlib.pyplot module. Import it as plt if necessary.
    
    Output:
-   Display cost decay curve with rolling mean. 
+   Displays cost decay curve with rolling mean. 
    """
    s = pd.Series(scores)
    plt.plot(s, label = "original")
