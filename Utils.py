@@ -18,6 +18,7 @@ class Batchable:
         np.random.shuffle(idx)
         self.X = X[idx, :]
         self.y = y[idx]
+        self.require_shuffle = False
         return
     
     def __init__(self, X, y, batch_size = 128, seed = 1):
@@ -31,7 +32,6 @@ class Batchable:
     
     def next(self):
         if self.require_shuffle:
-            self.require_shuffle = False
             self.shuffle()
             
         start = self.start
