@@ -42,3 +42,13 @@ def show(scores, ax = None):
         _, ax = plt.subplots()
     df.plot.line(alpha = 0.4, ax = ax)
     df.rolling(100, min_periods=1).mean().plot.line(ax = ax)    
+
+      
+def plot_scores(scores, window = 10):
+   s = pd.Series(scores)
+   plt.plot(s, label = "original")
+   plt.plot(s.rolling(window).mean(), label = "rolling mean")
+   plt.legend()
+   plt.xlabel("Iterations")
+   plt.ylabel("Cost")
+   plt.title("Cost decay over iterations")
