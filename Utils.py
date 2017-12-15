@@ -8,9 +8,7 @@ exec(requests.get(url).text)
 import math
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy
-from sklearn import preprocessing, linear_model, tree, ensemble, decomposition, model_selection, feature_extraction, feature_selection
       
 class Batchable:
    
@@ -40,16 +38,11 @@ class Batchable:
         self.start = end % self.X.shape[0]
         return self.X[start: end, :], self.y[start: end]
     
-def show(scores, ax = None):
-    df = pd.DataFrame.from_dict(scores)
-    if ax is None:
-        _, ax = plt.subplots()
-    df.plot.line(alpha = 0.4, ax = ax)
-    df.rolling(100, min_periods=1).mean().plot.line(ax = ax)  
      
 
       
 def plot_scores(scores, window = 10, plt = plt):
+   import matplotlib.pyplot as plt
    """
    Parameters: 
    scores: dict containing iteration index as key and the cost value as value.
@@ -69,6 +62,10 @@ def plot_scores(scores, window = 10, plt = plt):
    
    
 class CifarLoader(object):
+    """
+    Loads CIFAR10 dataset
+    
+    """
    
     def load_data(self, files):
         import pickle
@@ -79,8 +76,8 @@ class CifarLoader(object):
             print(path)
             with open(path, "rb") as f:
                 d = pickle.load(f, encoding='bytes')
-                X = np.vstack([X, d[b"data"]])
-                y = np.hstack([y, d[b"labels"]])
+                X = np.vstack([X, d[b"data"]]).astype("uint8")
+                y = np.hstack([y, d[b"labels"]]).astype("uint8")
         return X, y
         
     def __init__(self, data_path):
@@ -114,4 +111,3 @@ class CifarLoader(object):
             row_format.format("labels", str(self.labels))
         ]
         return "\n".join(lines)
-        
