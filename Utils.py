@@ -6,8 +6,11 @@ exec(requests.get(url).text)
    
 """
 import math
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy
+from sklearn import preprocessing, linear_model, tree, ensemble, decomposition, model_selection, feature_extraction, feature_selection
       
 class Batchable:
    
