@@ -9,6 +9,7 @@ import math
 import pandas as pd
 import numpy as np
 import scipy
+import matplotlib.pyplot as plt
       
 class Batchable:
    
@@ -42,7 +43,7 @@ class Batchable:
 
       
 def plot_scores(scores, window = 10, plt = plt):
-   import matplotlib.pyplot as plt
+
    """
    Parameters: 
    scores: dict containing iteration index as key and the cost value as value.
