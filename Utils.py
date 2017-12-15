@@ -41,7 +41,8 @@ def show(scores, ax = None):
     if ax is None:
         _, ax = plt.subplots()
     df.plot.line(alpha = 0.4, ax = ax)
-    df.rolling(100, min_periods=1).mean().plot.line(ax = ax)    
+    df.rolling(100, min_periods=1).mean().plot.line(ax = ax)  
+     
 
       
 def plot_scores(scores, window = 10, plt = plt):
@@ -61,3 +62,52 @@ def plot_scores(scores, window = 10, plt = plt):
    plt.xlabel("Iterations")
    plt.ylabel("Cost")
    plt.title("Cost decay over iterations")
+   
+   
+class CifarLoader(object):
+   
+    def load_data(self, files):
+        import pickle
+        import numpy as np
+        X = np.empty([0, 3072])
+        y = np.empty([0])
+        for path in files:
+            print(path)
+            with open(path, "rb") as f:
+                d = pickle.load(f, encoding='bytes')
+                X = np.vstack([X, d[b"data"]])
+                y = np.hstack([y, d[b"labels"]])
+        return X, y
+        
+    def __init__(self, data_path):
+        import os, pickle
+        
+        training_files = [os.path.join(data_path, "data_batch_{0}".format(i))  for i in range(1, 6)]
+        test_files = [os.path.join(data_path, "test_batch")]
+        labels_file = os.path.join(data_path, "batches.meta")
+
+        X_train, y_train = self.load_data(training_files)
+        X_test, y_test = self.load_data(test_files)
+        
+        self.X_train = X_train
+        self.X_test = X_test
+        self.y_train = y_train
+        self.y_test = y_test
+        
+        with open(labels_file, "rb") as f:
+            labels = pickle.load(f, encoding="bytes")
+        labels = [s.decode("utf-8")  for s in labels[b'label_names']]
+        
+        self.labels = labels
+    
+    def __repr__(self):
+        row_format ="{:<15}" * 2
+        lines = [
+            row_format.format("X_train", str(self.X_train.shape)),
+            row_format.format("X_test", str(self.X_test.shape)),
+            row_format.format("y_train", str(self.y_train.shape)),
+            row_format.format("y_test", str(self.y_test.shape)),
+            row_format.format("labels", str(self.labels))
+        ]
+        return "\n".join(lines)
+        
