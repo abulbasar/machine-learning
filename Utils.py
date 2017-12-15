@@ -7,6 +7,7 @@ exec(requests.get(url).text)
 """
 import math
 import numpy as np
+import matplotlib.pyplot as plt
       
 class Batchable:
    
