@@ -42,7 +42,7 @@ class Batchable:
      
 
       
-def plot_scores(scores, window = 10, plt = plt):
+def plot_scores(scores, window = 10):
 
    """
    Parameters: 
