@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="duration <= 473.5\ngini = 0.208\nsamples = 31647\nvalue = [27909, 3738]"] ;
+1 [label="poutcome_success <= 0.5\ngini = 0.135\nsamples = 27466\nvalue = [25471, 1995]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="age <= 60.5\ngini = 0.104\nsamples = 26607\nvalue = [25137, 1470]"] ;
+1 -> 2 ;
+3 [label="gini = 0.094\nsamples = 26042\nvalue = [24759, 1283]"] ;
+2 -> 3 ;
+4 [label="gini = 0.443\nsamples = 565\nvalue = [378, 187]"] ;
+2 -> 4 ;
+5 [label="duration <= 132.5\ngini = 0.475\nsamples = 859\nvalue = [334, 525]"] ;
+1 -> 5 ;
+6 [label="gini = 0.317\nsamples = 157\nvalue = [126, 31]"] ;
+5 -> 6 ;
+7 [label="gini = 0.417\nsamples = 702\nvalue = [208, 494]"] ;
+5 -> 7 ;
+8 [label="duration <= 793.5\ngini = 0.486\nsamples = 4181\nvalue = [2438, 1743]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="poutcome_success <= 0.5\ngini = 0.446\nsamples = 2788\nvalue = [1850, 938]"] ;
+8 -> 9 ;
+10 [label="gini = 0.43\nsamples = 2654\nvalue = [1823, 831]"] ;
+9 -> 10 ;
+11 [label="gini = 0.322\nsamples = 134\nvalue = [27, 107]"] ;
+9 -> 11 ;
+12 [label="contact_cellular <= 0.5\ngini = 0.488\nsamples = 1393\nvalue = [588, 805]"] ;
+8 -> 12 ;
+13 [label="gini = 0.5\nsamples = 461\nvalue = [234, 227]"] ;
+12 -> 13 ;
+14 [label="gini = 0.471\nsamples = 932\nvalue = [354, 578]"] ;
+12 -> 14 ;
+}
