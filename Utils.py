@@ -123,3 +123,32 @@ def outliers_iqr(ys):
     lower_bound = quartile_1 - (iqr * 1.5)
     upper_bound = quartile_3 + (iqr * 1.5)
     return np.where((ys > upper_bound) | (ys < lower_bound))
+
+
+def load_mnist_csv(path = "/data/MNIST/"):
+    df_train = pd.read_csv(path + "mnist_train.csv", header=None)
+    df_test = pd.read_csv(path + "mnist_test.csv", header=None)
+    
+    X_train = df_train.iloc[:, 1:]
+    X_test = df_test.iloc[:, 1:]
+    y_train = df_train.iloc[:, 0]
+    y_test = df_test.iloc[:, 0]
+
+    X_train_mean = np.mean(X_train, axis=0)
+    X_train_std = np.std(X_train, axis = 0)
+    X_train = (X_train - X_train_mean) / X_train_std
+
+    X_test = (X_test - X_train_mean) / X_train_std
+    
+    return X_train, X_test, y_train, y_test
+
+
+
+def one_hot(y, depth):
+    import numpy as np
+    m = len(y)
+    Y = np.zeros((m, depth))
+    Y[np.arange(m), y] = 1
+    return Y
+    
+
