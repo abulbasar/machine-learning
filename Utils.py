@@ -151,4 +151,7 @@ def one_hot(y, depth):
     Y[np.arange(m), y] = 1
     return Y
     
-
+def rgb_to_grey(a):
+    a = a.dot(np.array([0.3, 0.59, 0.11]))
+    a = np.abs(a - 255)/255
+    return a
