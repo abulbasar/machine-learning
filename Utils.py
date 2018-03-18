@@ -91,8 +91,8 @@ class CifarLoader(object):
         X_train, y_train = self.load_data(training_files)
         X_test, y_test = self.load_data(test_files)
         
-        self.X_train = X_train
-        self.X_test = X_test
+        self.X_train = X_train.reshape([-1, 3, 32, 32]).transpose([0, 2, 3, 1])/255
+        self.X_test = X_test.reshape([-1, 3, 32, 32]).transpose([0, 2, 3, 1])/255
         self.y_train = y_train
         self.y_test = y_test
         
