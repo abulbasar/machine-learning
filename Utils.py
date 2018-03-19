@@ -10,6 +10,8 @@ import pandas as pd
 import numpy as np
 import scipy
 import matplotlib.pyplot as plt
+from sklearn import decomposition, preprocessing
+
       
 class Batchable:
    
@@ -125,21 +127,21 @@ def outliers_iqr(ys):
     return np.where((ys > upper_bound) | (ys < lower_bound))
 
 
-def load_mnist_csv(path = "/data/MNIST/"):
+def load_mnist_csv(path = "/data/MNIST/", one_hot = False):
     df_train = pd.read_csv(path + "mnist_train.csv", header=None)
     df_test = pd.read_csv(path + "mnist_test.csv", header=None)
     
-    X_train = df_train.iloc[:, 1:]
-    X_test = df_test.iloc[:, 1:]
+    X_train = df_train.iloc[:, 1:]/255
+    X_test = df_test.iloc[:, 1:]/255
     y_train = df_train.iloc[:, 0]
     y_test = df_test.iloc[:, 0]
-
-    X_train_mean = np.mean(X_train, axis=0)
-    X_train_std = np.std(X_train, axis = 0)
-    X_train = (X_train - X_train_mean) / X_train_std
-
-    X_test = (X_test - X_train_mean) / X_train_std
     
+    if one_hot:
+        from sklearn.preprocessing import OneHotEncoder
+        ohe = OneHotEncoder()
+        y_train = ohe.fit_transform(y_train.reshape(-1, 1))
+        y_test = ohe.transform(y_test.reshape(-1, 1))
+
     return X_train, X_test, y_train, y_test
 
 
