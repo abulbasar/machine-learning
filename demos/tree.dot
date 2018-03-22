@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box] ;
+0 [label="checking_balance_unknown <= 0.219\ngini = 0.433\nsamples = 700\nvalue = [478, 222]"] ;
+1 [label="months_loan_duration <= -0.061\ngini = 0.493\nsamples = 425\nvalue = [237, 188]"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="amount <= -0.7\ngini = 0.451\nsamples = 224\nvalue = [147, 77]"] ;
+1 -> 2 ;
+3 [label="gini = 0.5\nsamples = 81\nvalue = [41, 40]"] ;
+2 -> 3 ;
+4 [label="gini = 0.384\nsamples = 143\nvalue = [106, 37]"] ;
+2 -> 4 ;
+5 [label="checking_balance_> 200 DM <= 1.685\ngini = 0.495\nsamples = 201\nvalue = [90, 111]"] ;
+1 -> 5 ;
+6 [label="gini = 0.486\nsamples = 182\nvalue = [76, 106]"] ;
+5 -> 6 ;
+7 [label="gini = 0.388\nsamples = 19\nvalue = [14, 5]"] ;
+5 -> 7 ;
+8 [label="installment_plan_none <= -0.872\ngini = 0.217\nsamples = 275\nvalue = [241, 34]"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="employment_length_1 - 4 yrs <= 0.318\ngini = 0.429\nsamples = 45\nvalue = [31, 14]"] ;
+8 -> 9 ;
+10 [label="gini = 0.342\nsamples = 32\nvalue = [25, 7]"] ;
+9 -> 10 ;
+11 [label="gini = 0.497\nsamples = 13\nvalue = [6, 7]"] ;
+9 -> 11 ;
+12 [label="age <= -1.137\ngini = 0.159\nsamples = 230\nvalue = [210, 20]"] ;
+8 -> 12 ;
+13 [label="gini = 0.473\nsamples = 13\nvalue = [8, 5]"] ;
+12 -> 13 ;
+14 [label="gini = 0.129\nsamples = 217\nvalue = [202, 15]"] ;
+12 -> 14 ;
+}
