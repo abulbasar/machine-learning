@@ -41,7 +41,10 @@ class Batchable:
         self.start = end % self.X.shape[0]
         return self.X[start: end, :], self.y[start: end]
     
-     
+    
+def to_categorical(y):
+    num_classes = len(np.unique(y))
+    return np.eye(num_classes)[y.flatten()]
 
       
 def plot_scores(scores, window = 10):
