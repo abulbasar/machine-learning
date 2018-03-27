@@ -13,33 +13,45 @@ import matplotlib.pyplot as plt
 from sklearn import decomposition, preprocessing
 
       
-class Batchable:
-   
-    def shuffle(self):
+class Batchable(object):
+    """
+    Create a batchable object that would return batched X and y values.
+    """
+    
+    def __shuffle(self):
         X = self.X
         y = self.y
         idx = np.arange(X.shape[0])
         np.random.shuffle(idx)
-        self.X = X[idx, :]
+        self.X = X[idx]
         self.y = y[idx]
         self.require_shuffle = False
         return
     
-    def __init__(self, X, y, batch_size = 32, seed = 1):
+    def __init__(self, X, y, batch_size = 32, epochs = 10, seed = 1):
+        
+        if not isinstance(X, np.ndarray) or not isinstance(y, np.ndarray):
+            raise ValueError('Both X and y must be np.ndarray')
+        
+        if X.shape[0] != y.shape[0]:
+            raise ValueError("X and y must be of same size of axis=0")
+        
+        from math import ceil
         np.random.seed(seed)
         self.X = X
         self.y = y
-        self.shuffle()
-        self.start = 0
+        self.epochs = epochs
         self.batch_size = batch_size
-        self.num_batches = math.ceil(X.shape[0] / batch_size)
-    
+        self.num_batches = ceil(X.shape[0] / batch_size)
+        self.__shuffle()
+        
     def next(self):
-        start = self.start
-        end = self.start + self.batch_size
-        end = min(self.X.shape[0], end)
-        self.start = end % self.X.shape[0]
-        return self.X[start: end, :], self.y[start: end]
+        for i in range(self.epochs):
+            for j in range(self.num_batches):
+                start = j * self.batch_size
+                end = start + self.batch_size
+                yield self.X[start:end], self.y[start:end]
+            self.__shuffle()
     
 
 def plot_scores(scores, window = 10):
@@ -148,7 +160,7 @@ def load_mnist_csv(path = "/data/MNIST/", one_hot = False, shape = None):
         
     return X_train, X_test, y_train, y_test
 
-X_train, X_test, y_train, y_test = load_mnist_csv(shape = "2D")
+
 
 
 def to_categorical(y):
