@@ -25,7 +25,7 @@ class Batchable:
         self.require_shuffle = False
         return
     
-    def __init__(self, X, y, batch_size = 128, seed = 1):
+    def __init__(self, X, y, batch_size = 32, seed = 1):
         np.random.seed(seed)
         self.X = X
         self.y = y
@@ -41,12 +41,7 @@ class Batchable:
         self.start = end % self.X.shape[0]
         return self.X[start: end, :], self.y[start: end]
     
-    
-def to_categorical(y):
-    num_classes = len(np.unique(y))
-    return np.eye(num_classes)[y.flatten()]
 
-      
 def plot_scores(scores, window = 10):
 
    """
@@ -122,41 +117,42 @@ class CifarLoader(object):
    
 import numpy as np
 
-def outliers_iqr(ys):
-    quartile_1, quartile_3 = np.percentile(ys, [25, 75])
-    iqr = quartile_3 - quartile_1
-    lower_bound = quartile_1 - (iqr * 1.5)
-    upper_bound = quartile_3 + (iqr * 1.5)
-    return np.where((ys > upper_bound) | (ys < lower_bound))
+def outliers(y):
+    q1, q3 = np.percentile(y, [25, 75])
+    iqr = q3 - q1
+    lower_bound = max(np.min(y), q1 - (iqr * 1.5))
+    upper_bound = min(np.max(y), q3 + (iqr * 1.5))
+    return (y > upper_bound) | (y < lower_bound)
 
 
-def load_mnist_csv(path = "/data/MNIST/", one_hot = False):
+def load_mnist_csv(path = "/data/MNIST/", one_hot = False, shape = None):
     df_train = pd.read_csv(path + "mnist_train.csv", header=None)
     df_test = pd.read_csv(path + "mnist_test.csv", header=None)
     
-    X_train = df_train.iloc[:, 1:]/255
-    X_test = df_test.iloc[:, 1:]/255
-    y_train = df_train.iloc[:, 0]
-    y_test = df_test.iloc[:, 0]
+    X_train = df_train.iloc[:, 1:].values/255
+    X_test = df_test.iloc[:, 1:].values/255
+    y_train = df_train.iloc[:, 0].values
+    y_test = df_test.iloc[:, 0].values
+    
+    if shape == "2D":
+        X_train = X_train.reshape(-1, 28, 28)
+        X_test = X_test.reshape(-1, 28, 28)
+        
+    if shape == "3D":
+        X_train = X_train.reshape(-1, 28, 28, 1)
+        X_test = X_test.reshape(-1, 28, 28, 1)
     
     if one_hot:
-        from sklearn.preprocessing import OneHotEncoder
-        ohe = OneHotEncoder()
-        y_train = ohe.fit_transform(y_train.reshape(-1, 1))
-        y_test = ohe.transform(y_test.reshape(-1, 1))
-
+        eye = np.eye(len(np.unique(y_train)))
+        y_train, y_test = eye[y_train], eye[y_test]
+        
     return X_train, X_test, y_train, y_test
 
+X_train, X_test, y_train, y_test = load_mnist_csv(shape = "2D")
 
 
-def one_hot(y, depth):
-    import numpy as np
-    m = len(y)
-    Y = np.zeros((m, depth))
-    Y[np.arange(m), y] = 1
-    return Y
-    
-def rgb_to_grey(a):
-    a = a.dot(np.array([0.3, 0.59, 0.11]))
-    a = np.abs(a - 255)/255
-    return a
+def to_categorical(y):
+    y = y.flatten()
+    depth = len(np.unique(y))
+    eye = np.depth(depth)
+    return eye[y]
