@@ -16,6 +16,23 @@ from sklearn import decomposition, preprocessing
 class Batchable(object):
     """
     Create a batchable object that would return batched X and y values.
+    
+    Usage:
+    ....
+    init = tf.global_variables_initializer()
+    batchable = Batchable(X_train, y_train)
+    with tf.Session() as sess:
+    init.run()
+    for i, progress, X_batch, y_batch in batchable.next():
+        sess.run(opt, feed_dict={X: X_batch, y: y_batch})
+        if i % (bachable.max_iters // 20) == 0:
+            acc_train = accuracy.eval(feed_dict={X: X_batch, y: y_batch})
+            acc_test = accuracy.eval(feed_dict={X: X_test, y: y_test})
+            print("Progress:%3d%%" % progress, 
+                  "Train accuracy: %.4f" % acc_train, 
+                  "Test accuracy: %.4f" % acc_test)
+    
+    
     """
     
     def __shuffle(self):
@@ -43,16 +60,24 @@ class Batchable(object):
         self.epochs = epochs
         self.batch_size = batch_size
         self.num_batches = ceil(X.shape[0] / batch_size)
+        self.max_iters = self.epochs * self.num_batches
         self.__shuffle()
         
     def next(self):
+        iteration, progress = 0, 0
         for i in range(self.epochs):
+            self.current_epoch = i
             for j in range(self.num_batches):
+                self.current_batch = j
                 start = j * self.batch_size
                 end = start + self.batch_size
-                yield self.X[start:end], self.y[start:end]
+                iteration = iteration + 1
+                progress = int(100 * iteration / self.max_iters) + 1
+                yield iteration, progress, self.X[start:end], self.y[start:end]
             self.__shuffle()
-    
+
+
+            
 
 def plot_scores(scores, window = 10):
 
