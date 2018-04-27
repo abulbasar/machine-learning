@@ -77,6 +77,26 @@ class Batchable(object):
             self.__shuffle()
 
 
+def data_generator(X, y, batch_size = 32, epochs = 1):
+    from collections import namedtuple
+    from math import ceil
+    Batch = namedtuple("batch", ["epoch", "global_step", "progress", "X_batch", "y_batch"])
+    global_step = 0
+    for epoch in range(epochs):
+        m = X_train.shape[0]
+        indices = np.arange(m)
+        np.random.shuffle(indices)
+        X = X[indices]
+        y = y[indices]
+        num_batches = ceil(m/batch_size)
+        for j in range(num_batches):
+            start = j * batch_size
+            end = start + batch_size
+            X_batch = X[start:end]
+            y_batch = y[start:end]
+            progress = (j + 1) * 100 / num_batches
+            yield Batch(epoch, global_step, progress, X_batch, y_batch)
+            global_step = global_step + 1
             
 
 def plot_scores(scores, window = 10):
