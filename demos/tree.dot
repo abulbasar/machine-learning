@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="checking_balance_unknown <= 0.5\ngini = 0.408\nsamples = 700\nvalue = [500, 200]", fillcolor="#e5813999"] ;
+1 [label="months_loan_duration <= 11.5\ngini = 0.477\nsamples = 417\nvalue = [253, 164]", fillcolor="#e581395a"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="credit_history_fully repaid this bank <= 0.5\ngini = 0.287\nsamples = 69\nvalue = [57, 12]", fillcolor="#e58139c9"] ;
+1 -> 2 ;
+3 [label="gini = 0.198\nsamples = 63\nvalue = [56, 7]", fillcolor="#e58139df"] ;
+2 -> 3 ;
+4 [label="gini = 0.278\nsamples = 6\nvalue = [1, 5]", fillcolor="#399de5cc"] ;
+2 -> 4 ;
+5 [label="checking_balance_< 0 DM <= 0.5\ngini = 0.492\nsamples = 348\nvalue = [196, 152]", fillcolor="#e5813939"] ;
+1 -> 5 ;
+6 [label="gini = 0.465\nsamples = 193\nvalue = [122, 71]", fillcolor="#e581396b"] ;
+5 -> 6 ;
+7 [label="gini = 0.499\nsamples = 155\nvalue = [74, 81]", fillcolor="#399de516"] ;
+5 -> 7 ;
+8 [label="amount <= 5873.5\ngini = 0.222\nsamples = 283\nvalue = [247, 36]", fillcolor="#e58139da"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="installment_plan_none <= 0.5\ngini = 0.173\nsamples = 251\nvalue = [227, 24]", fillcolor="#e58139e4"] ;
+8 -> 9 ;
+10 [label="gini = 0.369\nsamples = 41\nvalue = [31, 10]", fillcolor="#e58139ad"] ;
+9 -> 10 ;
+11 [label="gini = 0.124\nsamples = 210\nvalue = [196, 14]", fillcolor="#e58139ed"] ;
+9 -> 11 ;
+12 [label="personal_status_single male <= 0.5\ngini = 0.469\nsamples = 32\nvalue = [20, 12]", fillcolor="#e5813966"] ;
+8 -> 12 ;
+13 [label="gini = 0.245\nsamples = 7\nvalue = [1, 6]", fillcolor="#399de5d4"] ;
+12 -> 13 ;
+14 [label="gini = 0.365\nsamples = 25\nvalue = [19, 6]", fillcolor="#e58139ae"] ;
+12 -> 14 ;
+}
