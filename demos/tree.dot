@@ -1,0 +1,32 @@
+digraph Tree {
+node [shape=box, style="filled", color="black"] ;
+0 [label="checking_balance_unknown <= 0.5\ngini = 0.418\nsamples = 700\nvalue = [492, 208]", fillcolor="#e5813993"] ;
+1 [label="checking_balance_< 0 DM <= 0.5\ngini = 0.488\nsamples = 420\nvalue = [242, 178]", fillcolor="#e5813943"] ;
+0 -> 1 [labeldistance=2.5, labelangle=45, headlabel="True"] ;
+2 [label="savings_balance_unknown <= 0.5\ngini = 0.437\nsamples = 229\nvalue = [155, 74]", fillcolor="#e5813985"] ;
+1 -> 2 ;
+3 [label="gini = 0.465\nsamples = 190\nvalue = [120, 70]", fillcolor="#e581396a"] ;
+2 -> 3 ;
+4 [label="gini = 0.184\nsamples = 39\nvalue = [35, 4]", fillcolor="#e58139e2"] ;
+2 -> 4 ;
+5 [label="months_loan_duration <= 15.5\ngini = 0.496\nsamples = 191\nvalue = [87, 104]", fillcolor="#399de52a"] ;
+1 -> 5 ;
+6 [label="gini = 0.458\nsamples = 76\nvalue = [49, 27]", fillcolor="#e5813972"] ;
+5 -> 6 ;
+7 [label="gini = 0.442\nsamples = 115\nvalue = [38, 77]", fillcolor="#399de581"] ;
+5 -> 7 ;
+8 [label="installment_plan_none <= 0.5\ngini = 0.191\nsamples = 280\nvalue = [250, 30]", fillcolor="#e58139e0"] ;
+0 -> 8 [labeldistance=2.5, labelangle=-45, headlabel="False"] ;
+9 [label="age <= 35.5\ngini = 0.397\nsamples = 44\nvalue = [32, 12]", fillcolor="#e581399f"] ;
+8 -> 9 ;
+10 [label="gini = 0.278\nsamples = 24\nvalue = [20, 4]", fillcolor="#e58139cc"] ;
+9 -> 10 ;
+11 [label="gini = 0.48\nsamples = 20\nvalue = [12, 8]", fillcolor="#e5813955"] ;
+9 -> 11 ;
+12 [label="age <= 31.5\ngini = 0.141\nsamples = 236\nvalue = [218, 18]", fillcolor="#e58139ea"] ;
+8 -> 12 ;
+13 [label="gini = 0.28\nsamples = 89\nvalue = [74, 15]", fillcolor="#e58139cb"] ;
+12 -> 13 ;
+14 [label="gini = 0.04\nsamples = 147\nvalue = [144, 3]", fillcolor="#e58139fa"] ;
+12 -> 14 ;
+}
