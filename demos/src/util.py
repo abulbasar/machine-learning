@@ -1,4 +1,6 @@
-def is_prime(x):
+import cython
+
+pydef bool is_prime(int x):
     if type(x) is int and x>=2:
         for i in range(2, x-1):
             if x % i == 0:
