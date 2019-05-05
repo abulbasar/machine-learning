@@ -95,3 +95,7 @@ data/
 *.csv
 *.hdf5
 *.png
+*.dot
+*.pkl
+*.jpg
+
