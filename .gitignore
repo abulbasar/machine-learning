@@ -3,5 +3,6 @@
 !*.py
 !.gitignore
 !.txt
-
+!*.md
+!LICENSE
 
