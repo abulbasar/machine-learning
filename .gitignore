@@ -1,4 +1,7 @@
-/.ipynb_checkpoints/
+.ipynb_checkpoints
+*.dot
+*.png
+
 !*.ipynb
 !*.py
 !.gitignore
