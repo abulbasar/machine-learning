@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <style>
+        input[type='text'], select{
+            width: 300px;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="bg-black washed-blue pa2">
+          <h1>Insurance Primium Calculator</h1>
+      </div>
+    <div class="fl w-100 pa5">
+        <div class="fl w-20">
+            <p />
+        </div>
+
+        <div class="fl w-60">
+            <form action = "http://localhost:5000/predict_price" method = "POST">
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="age">Age</label></div>
+                    <div class="fl w-80"><input type = "text" name = "age"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="gender">Gender</label></div>
+                    <div class="fl w-80">
+                        <select name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="age">BMI</label></div>
+                    <div class="fl w-80"><input type = "text" name = "bmi"/></div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="age">Smoker</label></div>
+                    <div class="fl w-80">
+                        <select name="smoker">
+                            <option value="yes">Yes</option>
+                            <option value="no">No</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <div class="fl w-20"><label for="age">Region</label></div>
+                    <div class="fl w-80">
+                        <select name="region">
+                            <option value="northeast">North East</option>
+                            <option value="northwest">North West</option>
+                            <option value="southeast">South East</option>
+                            <option value="southwest">South West</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mt3 fl w-100">
+                    <input type="submit" value = "Submit">
+                </div>
+            </form>
+        </div>
+        <div class="fl w-20">
+            <p />
+        </div>
+    </div>
+  </body>
+</html>

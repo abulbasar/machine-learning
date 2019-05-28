@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  </head>
+  <body>
+      <div class="bg-black washed-blue pa2">
+          <h1>Insurance Primium Calculator</h1>
+      </div>
+    <div class="fl w-100 pa5">
+
+        <div class="fl w-20">
+            <p />
+        </div>
+
+        <div class="fl w-60">
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">Age</div>
+                <div class="fl w-80">{{record.age}}</div>
+            </div>
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">Gender</div>
+                <div class="fl w-80">{{record.gender}}</div>
+            </div>
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">BMI</div>
+                <div class="fl w-80">{{record.bmi}}</div>
+            </div>
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">Smoker</div>
+                <div class="fl w-80">{{record.smoker}}</div>
+            </div>
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">Region</div>
+                <div class="fl w-80">{{record.region}}</div>
+            </div>
+            <div class="mt3 fl w-100">
+                <div class="fl w-20">Estimated Price</div>
+                <div class="fl w-80">{{prediction}}</div>
+            </div>
+        </div>
+        <div class="fl w-20">
+            <p />
+        </div>
+    </div>
+  </body>
+</html>
