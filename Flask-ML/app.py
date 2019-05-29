@@ -17,7 +17,7 @@ Enter a sample record and submit to receive an estimated price.
 """
 
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import pandas as pd
 import pickle
 
@@ -42,12 +42,16 @@ def home():
 @app.route('/predict_price',methods = ["GET", "POST"])
 def result():
     request_data = None
+    prediction = None
     if request.method == "POST":
         request_data = dict(request.form)
         print(request_data)
         prediction = predict(request_data)
-        
-    return render_template("output.html", record = request_data, prediction = prediction)
+        return render_template("output.html", record = request_data, prediction = prediction)
+    return redirect("/", code=302)
     
 if __name__ == '__main__':
     app.run(debug=True)
+    
+    
+    

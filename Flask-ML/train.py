@@ -28,7 +28,7 @@ num_columns = ["age", "bmi", "children"]
 # Build pipelines for categorical data and numeric data
 cat_pipe = pipeline.Pipeline([
     ('imputer', impute.SimpleImputer(strategy='constant', fill_value='missing')),
-    ('onehot', preprocessing.OneHotEncoder(handle_unknown='error', drop="first"))
+    ('onehot', preprocessing.OneHotEncoder(handle_unknown='ignore'))
 ]) 
 
 num_pipe = pipeline.Pipeline([
@@ -60,6 +60,7 @@ param_grid = {
 gsearch = model_selection.GridSearchCV(estimator_pipe, param_grid, cv = 5, verbose=1, n_jobs=8)
 
 # Fit grid search estimator
+print("Fitting the model")
 gsearch.fit(X, y)
 
 print(gsearch.best_score_, gsearch.best_params_)
@@ -72,5 +73,9 @@ pd.DataFrame({"actual": y, "predict": y_pred}).sample(10)
 
 
 # Save the tuned model
-with open("/tmp/model.pickle", "wb") as f:
+path = "/tmp/model.pickle"
+with open(path, "wb") as f:
     pickle.dump(gsearch, f)
+
+print("Saved the model: " + path, "Now, start or restart the flask web application.")
+print("$ python app.py")
