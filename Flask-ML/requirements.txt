@@ -1,3 +1,6 @@
 numpy
 pandas
 sklearn
+flask
+jinja2
+flask_restful
