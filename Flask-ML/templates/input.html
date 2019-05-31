@@ -8,11 +8,15 @@
         input[type='text'], select{
             width: 300px;
         }
+        a,a:visited {
+            text-decoration: none;
+            color:#FEF;
+        }
     </style>
   </head>
   <body>
       <div class="bg-black washed-blue pa2">
-          <h1>Insurance Primium Calculator</h1>
+          <a href="/" target="_self"><h1>Insurance Premium Calculator</h1></a>
       </div>
     <div class="fl w-100 pa5">
         <div class="fl w-20">
@@ -20,7 +24,7 @@
         </div>
 
         <div class="fl w-60">
-            <form action = "http://localhost:5000/predict_price" method = "POST">
+            <form action = "/predict_price" method = "POST">
                 <div class="mt3 fl w-100">
                     <div class="fl w-20"><label for="age">Age</label></div>
                     <div class="fl w-80"><input type = "text" name = "age"/></div>

@@ -10,8 +10,9 @@ from sklearn import pipeline, preprocessing, compose, linear_model, impute, mode
 
 
 # Load data
+print("Loading the training observations")
 df = pd.read_csv("https://raw.githubusercontent.com/abulbasar/data/master/insurance.csv")
-df.head()
+print("Training data: \n", df.head())
 
 target = "charges"
 y = np.log10(df[target])
@@ -63,13 +64,13 @@ gsearch = model_selection.GridSearchCV(estimator_pipe, param_grid, cv = 5, verbo
 print("Fitting the model")
 gsearch.fit(X, y)
 
-print(gsearch.best_score_, gsearch.best_params_)
+print("Gridsearch best score: ", gsearch.best_score_, "best params: ", gsearch.best_params_)
 
 # Sanity test the quality of model
 y_pred = gsearch.predict(X)
 plt.scatter(y, y_pred - y)
 
-pd.DataFrame({"actual": y, "predict": y_pred}).sample(10)
+print("Sample predictions: ", pd.DataFrame({"actual": y, "predict": y_pred}).sample(10))
 
 
 # Save the tuned model
@@ -77,5 +78,4 @@ path = "/tmp/model.pickle"
 with open(path, "wb") as f:
     pickle.dump(gsearch, f)
 
-print("Saved the model: " + path, "Now, start or restart the flask web application.")
-print("$ python app.py")
+print("Saved the model: " + path, "Now start or restart the flask web application.")
