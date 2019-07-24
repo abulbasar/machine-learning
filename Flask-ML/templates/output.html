@@ -21,11 +21,11 @@
       </div>
     <div class="fl w-100 pa5">
 
-        <div class="fl w-20">
+        <div class="fl w-10">
             <p />
         </div>
 
-        <div class="fl w-60">
+        <div class="fl w-80">
             <div class="mt3 fl w-100">
                 <div class="fl w-20">Age</div>
                 <div class="fl w-80">{{record.age}}</div>
@@ -46,12 +46,12 @@
                 <div class="fl w-20">Region</div>
                 <div class="fl w-80">{{record.region}}</div>
             </div>
-            <div class="mt3 fl w-100">
+            <div class="mt3 fl w-100 b">
                 <div class="fl w-20">Estimated Price</div>
-                <div class="fl w-80">{{prediction}}</div>
+                <div class="fl w-80">{{'%.2f' | format(prediction)}}</div>
             </div>
         </div>
-        <div class="fl w-20">
+        <div class="fl w-10">
             <p />
         </div>
     </div>

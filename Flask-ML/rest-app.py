@@ -8,10 +8,14 @@ import os.path
 import sys
 
 """
-Start the rest api service
+
+Train and save the model. Skip this step, if you have already trained the model.
+$ python train.py
+
+Start the rest api service. Keep the service running.
 $ python rest-app.py
 
-Send rest api call using curl command
+Open another terminal and send rest api call using curl command
 $ curl -i \
 --header "Content-type: application/json" \
 --request POST \
