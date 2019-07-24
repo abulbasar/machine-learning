@@ -8,6 +8,10 @@ import os.path
 import sys
 
 """
+Start the rest api service
+$ python rest-app.py
+
+Send rest api call using curl command
 $ curl -i \
 --header "Content-type: application/json" \
 --request POST \
