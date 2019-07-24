@@ -1,21 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-"""
-First run train.py. That scripts train a model for insurance price prediction and save the model.
-$ python train.py
-
-The saved model is loaded from the disk. The reloaded model can be used without further training. 
-
-Start the flask application server
-$ python app.py
-
-
-After starting the app server, open this link in the browser http://localhost:5000
-Enter a sample record and submit to receive an estimated price.
-
-"""
-
 
 from flask import Flask, render_template, request, redirect
 import pandas as pd

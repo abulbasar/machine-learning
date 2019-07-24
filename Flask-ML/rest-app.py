@@ -7,35 +7,6 @@ import pickle
 import os.path
 import sys
 
-"""
-
-Train and save the model. Skip this step, if you have already trained the model.
-$ python train.py
-
-Start the rest api service. Keep the service running.
-$ python rest-app.py
-
-Open another terminal and send rest api call using curl command
-$ curl -i \
---header "Content-type: application/json" \
---request POST \
---data '{"age": 33, "bmi": 27.0, "children": 0, "smoker": "yes", "gender": "male", "region": "northeast"}' \
-http://127.0.0.1:5001/ 
-
-
-Response should contain prediction: 
-{
-    "age": 33,
-    "bmi": 27.0,
-    "children": 0,
-    "smoker": "yes",
-    "gender": "male",
-    "region": "northeast",
-    "prediction": 21871.30625871111
-}
-
-"""
-
 app = Flask(__name__)
 api = Api(app)
 
