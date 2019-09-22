@@ -10,4 +10,4 @@ __pycache__
 !.txt
 !*.md
 !LICENSE
-
+.DS_Store
