@@ -1,5 +1,7 @@
 Install the required libraries. Skip this step, if not neccessary. 
-$ pip install -r requirements.txt
+$ pip install -r -U requirements.txt
+
+$ conda update --all
 
 
 Train the model for insurance price prediction and save the model. Change the path where you want to save the model. Use the same path in app.py and rest-app.py files as well.
