@@ -1,0 +1,7 @@
+numpy
+pandas
+spacy
+flask
+jinja2
+flask_restful
+boto3

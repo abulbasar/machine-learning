@@ -3,7 +3,7 @@
 __pycache__
 *.dot
 *.png
-
+*.mp3
 !*.ipynb
 !*.py
 !.gitignore

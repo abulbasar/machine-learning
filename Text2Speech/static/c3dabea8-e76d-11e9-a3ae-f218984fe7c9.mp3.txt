@@ -1,0 +1,1 @@
+Now that you have an s3 resource, you can make requests and process responses from the service. The following uses the buckets collection to print out all bucket names:
